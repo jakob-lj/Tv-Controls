@@ -94,6 +94,8 @@ app.get("/api/device/:deviceId/description", authenticated, (req, res) => {
   res.send({ description: getDeviceDescription(req.params.deviceId) });
 });
 
-app.listen(8000, () => {
-  console.log("Listeing at 8000");
+const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
+  console.log("Listeing at " + port);
 });
