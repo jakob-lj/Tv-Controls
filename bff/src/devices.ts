@@ -3,6 +3,7 @@ import { Role } from "./authTypes";
 type TvControl = {
   command: string;
   image: string;
+  description: string;
   argument: string | number | null;
 };
 
@@ -30,7 +31,50 @@ const tvIdMappings: TvMapping[] = [
     properties: {
       tvInput: "HDMI3",
     },
-    controls: [],
+    controls: [
+      {
+        command: "on",
+        description: "Slå på",
+        image: "power-on.png",
+        argument: null,
+      },
+      {
+        command: "off",
+        description: "Slå av",
+        image: "power-off.png",
+        argument: null,
+      },
+      {
+        command: "mute",
+        description: "Lyd av",
+        image: "mute.png",
+        argument: null,
+      },
+      {
+        command: "volume",
+        description: "Lav lyd",
+        image: "low-volume.png",
+        argument: 10,
+      },
+      {
+        command: "volume",
+        description: "Medium lyd",
+        image: "medium-volume.png",
+        argument: 25,
+      },
+      {
+        command: "volume",
+        description: "Høy lyd",
+        image: "high-volume.png",
+        argument: 40,
+      },
+      {
+        command: "tv",
+        description: "Se TV",
+        image: "tv.png",
+        argument: null,
+      },
+    ],
   },
   {
     logicalId: "FDVoyNzs",
@@ -41,7 +85,50 @@ const tvIdMappings: TvMapping[] = [
     properties: {
       tvInput: "HDMI1",
     },
-    controls: [],
+    controls: [
+      {
+        command: "on",
+        description: "Slå på",
+        image: "power-on.png",
+        argument: null,
+      },
+      {
+        command: "off",
+        description: "Slå av",
+        image: "power-off.png",
+        argument: null,
+      },
+      {
+        command: "mute",
+        description: "Lyd av",
+        image: "mute.png",
+        argument: null,
+      },
+      {
+        command: "volume",
+        description: "Lav lyd",
+        image: "low-volume.png",
+        argument: 10,
+      },
+      {
+        command: "volume",
+        description: "Medium lyd",
+        image: "medium-volume.png",
+        argument: 25,
+      },
+      {
+        command: "volume",
+        description: "Høy lyd",
+        image: "high-volume.png",
+        argument: 40,
+      },
+      {
+        command: "tv",
+        description: "Se TV",
+        image: "tv.png",
+        argument: null,
+      },
+    ],
   },
 ];
 
@@ -96,6 +183,14 @@ const devicesList = (forRole: Role) => {
     }));
 };
 
+const getDeviceControls = (deviceId: string): TvControl[] => {
+  return getDeviceByLogicalId(deviceId)?.controls ?? [];
+};
+
+const getDeviceDescription = (deviceId: string): string => {
+  return getDeviceByLogicalId(deviceId)?.description ?? "Unkown";
+};
+
 export {
   getSmartId,
   getTestId,
@@ -103,6 +198,8 @@ export {
   getDeviceProps,
   getDefaultDevice,
   devicesList,
+  getDeviceControls,
+  getDeviceDescription,
   DeviceProperties,
   TvMapping,
 };

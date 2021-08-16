@@ -10,7 +10,12 @@ import { requireBodyElement } from "./utils";
 import config from "./config";
 import { Role } from "./authTypes";
 import cors from "cors";
-import { devicesList, getDefaultDevice } from "./devices";
+import {
+  devicesList,
+  getDefaultDevice,
+  getDeviceControls,
+  getDeviceDescription,
+} from "./devices";
 
 const app = express();
 
@@ -35,6 +40,11 @@ app.get("/api/devices", authenticated, (req, res) => {
   res.send(devicesList((req as AuthenticatedRequest).userRole));
 });
 
+app.get("/api/device/:deviceId/controls", authenticated, (req, res) => {
+  const role = (req as AuthenticatedRequest).userRole;
+  if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
+  res.send(getDeviceControls(req.params.deviceId));
+});
 app.get("/testAuth/:deviceId", authenticated, (req, res) => {
   const role = (req as AuthenticatedRequest).userRole;
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
@@ -58,13 +68,20 @@ app.post("/api/login", (req, res) => {
 //   res.send("ok");
 // });
 
-app.post("/device/:deviceId/command", authenticated, (req, res) => {
+app.post("/api/device/:deviceId/command", authenticated, (req, res) => {
   const role = (req as AuthenticatedRequest).userRole;
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
   if (!requireBodyElement(req, "command")) return res.status(400).send();
+  console.log("got command", req.body.command);
   const command = req.body.command as CommandProps;
   send(req.params.deviceId, command);
   res.send("ok");
+});
+
+app.get("/api/device/:deviceId/description", authenticated, (req, res) => {
+  const role = (req as AuthenticatedRequest).userRole;
+  if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
+  res.send({ description: getDeviceDescription(req.params.deviceId) });
 });
 
 app.listen(8000, () => {

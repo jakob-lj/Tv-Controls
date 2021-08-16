@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const CardWrapper = styled.div`
@@ -30,8 +31,17 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CardIcon = styled.img``;
+const CardIcon = styled.img`
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1em;
+`;
 
-const CardTitle = styled.h3``;
+const CardTitle = styled.h3`
+  width: max-content;
+  margin: auto;
+  margin-top: 1em;
+`;
 
 export { Wrapper, CardWrapper, CardIcon, CardTitle };
