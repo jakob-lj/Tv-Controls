@@ -19,6 +19,16 @@ import {
 
 const app = express();
 
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith("/api")) return next();
+  const staticFiles = [".js", ".png", ".css", ".ico", ".txt"];
+  if (staticFiles.some((it) => req.originalUrl.includes(it))) {
+    res.sendFile(__dirname + "/static/" + req.originalUrl);
+  } else {
+    res.sendFile(__dirname + "/static/");
+  }
+});
+
 const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -28,7 +38,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Hello world");
 });
 
@@ -45,7 +55,7 @@ app.get("/api/device/:deviceId/controls", authenticated, (req, res) => {
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
   res.send(getDeviceControls(req.params.deviceId));
 });
-app.get("/testAuth/:deviceId", authenticated, (req, res) => {
+app.get("/api/testAuth/:deviceId", authenticated, (req, res) => {
   const role = (req as AuthenticatedRequest).userRole;
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
   res.send("ok");
