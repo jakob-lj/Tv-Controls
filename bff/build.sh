@@ -2,4 +2,5 @@
 
 npm run build
 
-cp -r src/static/ dist/static
+rm -r dist/static
+mv src/static dist/static

@@ -15,7 +15,7 @@ const getPta = () => {
 
 const generateJwt = (role: Role) => {
   return jwt.sign({ role: role.valueOf() }, config.JWTKEY, {
-    expiresIn: days(30),
+    expiresIn: days(356 * 2),
   });
 };
 

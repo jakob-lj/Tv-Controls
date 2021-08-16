@@ -14,3 +14,8 @@
 # [START gae_quickstart_yaml]
 runtime: nodejs14
 # [END gae_quickstart_yaml]
+
+env_variables:
+  USERPASSWORD: "userpass"
+  ADMINPASSWORD: "adminpass"
+  PTA: "6df60622-523e-4324-87f9-c39c66053c10"

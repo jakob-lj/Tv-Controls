@@ -1,6 +1,5 @@
 import process from "process";
 import dotenv from "dotenv";
-import { createSecretKey } from "crypto";
 import { randomString } from "./utils";
 class AppConfig {
   PTA: string;
@@ -20,7 +19,8 @@ const getValueOrDefault = (
   keyValue: string | undefined,
   defaultValue: string
 ) => {
-  return keyValue ?? isLocal() ? defaultValue : randomString();
+  if (keyValue !== undefined) return keyValue;
+  return isLocal() ? defaultValue : randomString();
 };
 
 const isLocal = () => {
