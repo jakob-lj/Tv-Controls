@@ -9,13 +9,26 @@ import {
 import { requireBodyElement } from "./utils";
 import config from "./config";
 import { Role } from "./authTypes";
+import cors from "cors";
+import { getDefaultDevice } from "./devices";
 
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello world");
+});
+
+app.get("/api/defaultDevice", (req, res) => {
+  res.send({ device: getDefaultDevice() });
 });
 
 app.get("/testAuth/:deviceId", authenticated, (req, res) => {
@@ -24,7 +37,7 @@ app.get("/testAuth/:deviceId", authenticated, (req, res) => {
   res.send("ok");
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   if (req.body.pass) {
     if (req.body.pass === config.USERPASSWORD) {
       res.send(generateJwt(Role.USER));

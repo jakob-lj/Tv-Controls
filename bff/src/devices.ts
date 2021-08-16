@@ -63,6 +63,10 @@ const getTestId = (): string => {
   return getSmartId("VCJIUmnw")!!;
 };
 
+const getDefaultDevice = () => {
+  return "FDVoyNzs";
+};
+
 const getDeviceProps = (logicalId: string): DeviceProperties => {
   return getDeviceByLogicalId(logicalId)!!.properties;
 };
@@ -72,6 +76,7 @@ export {
   getTestId,
   getPrincipalByLogicalId,
   getDeviceProps,
+  getDefaultDevice,
   DeviceProperties,
   TvMapping,
 };
