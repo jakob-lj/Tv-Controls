@@ -2,7 +2,9 @@ import { getAccessToken } from "../utils/utils";
 import { DeviceCommand, TvDevice } from "./types";
 
 const baseUrl =
-  process.env.NODE_ENV === "production" ? "/" : "http://localhost:8000";
+  process.env.NODE_ENV === "production"
+    ? `${window.location.origin}`
+    : "http://localhost:8000";
 
 const post = (endpoint: string, body: any) => {
   return fetch(`${baseUrl}${endpoint}`, {
