@@ -60,13 +60,13 @@ const tvIdMappings: TvMapping[] = [
         command: "volume",
         description: "Medium lyd",
         image: "medium-volume.png",
-        argument: 25,
+        argument: 15,
       },
       {
         command: "volume",
         description: "Høy lyd",
         image: "high-volume.png",
-        argument: 40,
+        argument: 20,
       },
       {
         command: "tv",
