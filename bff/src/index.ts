@@ -10,7 +10,7 @@ import { requireBodyElement } from "./utils";
 import config from "./config";
 import { Role } from "./authTypes";
 import cors from "cors";
-import { getDefaultDevice } from "./devices";
+import { devicesList, getDefaultDevice } from "./devices";
 
 const app = express();
 
@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
 
 app.get("/api/defaultDevice", (req, res) => {
   res.send({ device: getDefaultDevice() });
+});
+
+app.get("/api/devices", authenticated, (req, res) => {
+  res.send(devicesList((req as AuthenticatedRequest).userRole));
 });
 
 app.get("/testAuth/:deviceId", authenticated, (req, res) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import Devices from "../components/Devices";
 import { getAccessToken, getDefaultDevice } from "../utils/utils";
 
 const Home = () => {
@@ -8,14 +9,18 @@ const Home = () => {
   const accessToken = getAccessToken();
 
   if (defaultDevice !== null) {
-    return <Redirect to={defaultDevice} />;
+    return <Redirect to={`/control/${defaultDevice}`} />;
   }
 
   if (accessToken === null) {
     return <Redirect to={"/setup"} />;
   }
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <Devices />
+    </div>
+  );
 };
 
 export default Home;

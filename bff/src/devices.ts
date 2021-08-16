@@ -1,11 +1,19 @@
 import { Role } from "./authTypes";
 
+type TvControl = {
+  command: string;
+  image: string;
+  argument: string | number | null;
+};
+
 type TvMapping = {
   logicalId: string;
   smartThingsId: string;
   description: string;
+  image: string;
   requiredPrincipal: Role;
   properties: DeviceProperties;
+  controls: TvControl[];
 };
 
 type DeviceProperties = {
@@ -18,18 +26,22 @@ const tvIdMappings: TvMapping[] = [
     smartThingsId: "d4a3d888-9c9d-4755-93a1-a290574e9b0e",
     description: "Bjerkebakken",
     requiredPrincipal: Role.ADMIN,
+    image: "/bjerkebakken.png",
     properties: {
       tvInput: "HDMI3",
     },
+    controls: [],
   },
   {
     logicalId: "FDVoyNzs",
     smartThingsId: "6ec97df5-e513-2632-ffad-a7db6202520e",
     description: "Søkredalsveien",
+    image: "/old-woman.png",
     requiredPrincipal: Role.USER,
     properties: {
       tvInput: "HDMI1",
     },
+    controls: [],
   },
 ];
 
@@ -71,12 +83,26 @@ const getDeviceProps = (logicalId: string): DeviceProperties => {
   return getDeviceByLogicalId(logicalId)!!.properties;
 };
 
+const devicesList = (forRole: Role) => {
+  return tvIdMappings
+    .filter(
+      (dev) =>
+        dev.requiredPrincipal === forRole || dev.requiredPrincipal === Role.USER
+    )
+    .map((dev) => ({
+      name: dev.description,
+      image: dev.image,
+      id: dev.logicalId,
+    }));
+};
+
 export {
   getSmartId,
   getTestId,
   getPrincipalByLogicalId,
   getDeviceProps,
   getDefaultDevice,
+  devicesList,
   DeviceProperties,
   TvMapping,
 };

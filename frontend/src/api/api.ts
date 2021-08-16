@@ -1,4 +1,5 @@
 import { getAccessToken } from "../utils/utils";
+import { TvDevice } from "./types";
 
 const baseUrl =
   process.env.NODE_ENV === "production" ? "/" : "http://localhost:8000";
@@ -31,4 +32,12 @@ const getAccessTokenForEasyInstall = async (
   return await post("/api/login", { pass: password }).then((r) => r.text());
 };
 
-export { getDefaultDeviceForEasySetup, getAccessTokenForEasyInstall };
+const getDevices = async (): Promise<TvDevice[]> => {
+  return getAuthed("/api/devices").then((r) => r.json());
+};
+
+export {
+  getDefaultDeviceForEasySetup,
+  getAccessTokenForEasyInstall,
+  getDevices,
+};
