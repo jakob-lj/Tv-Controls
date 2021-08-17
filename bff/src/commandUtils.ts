@@ -90,6 +90,24 @@ const buildCommand = ({
         capability: "mediaInputSource",
         arguments: [deviceProperties.tvInput],
       };
+    case "channelUp":
+      return {
+        command: "channelUp",
+        capability: "tvChannel",
+        arguments: [],
+      };
+    case "channelDown":
+      return {
+        command: "channelDown",
+        capability: "tvChannel",
+        arguments: [],
+      };
+    case "setChannel":
+      return {
+        command: "setTvChannel",
+        capability: "tvChannel",
+        arguments: [argument],
+      };
     default:
       return {
         command: "setMute",

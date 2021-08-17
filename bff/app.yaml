@@ -19,3 +19,4 @@ env_variables:
   USERPASSWORD: "userpass"
   ADMINPASSWORD: "adminpass"
   PTA: "6df60622-523e-4324-87f9-c39c66053c10"
+  SIGNINGKEY: "verysecuredpasswordthatsbeingusedinproduction"

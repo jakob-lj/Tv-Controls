@@ -21,7 +21,7 @@ const app = express();
 
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith("/api")) return next();
-  const staticFiles = [".js", ".png", ".css", ".ico", ".txt"];
+  const staticFiles = [".js", ".jpg", ".png", ".css", ".ico", ".txt"];
   if (staticFiles.some((it) => req.originalUrl.includes(it))) {
     res.sendFile(__dirname + "/static/" + req.originalUrl);
   } else {
