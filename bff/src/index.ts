@@ -42,7 +42,7 @@ app.get("/api", (req, res) => {
   res.send("Hello world");
 });
 
-app.get("/api/defaultDevice", (req, res) => {
+app.get("/api/defaultDevice", authenticated, (req, res) => {
   res.send({ device: getDefaultDevice() });
 });
 
