@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getDeviceControls, sendCommand } from "../api/api";
+import { netflixGet, netflixPost } from "../api/netflix-control.api";
 import { DeviceCommand } from "../api/types";
 import { CardIcon, CardTitle, CardWrapper, Wrapper } from "../components/Crad";
 import Header from "../components/Header";
@@ -35,7 +36,12 @@ const Control: React.FC = () => {
   const deviceCommanCards = deviceCommands.map((command) => {
     return (
       <CardWrapper
-        onClick={() => sendCommand(deviceId, command.command, command.argument)}
+        onClick={() => {
+          sendCommand(deviceId, command.command, command.argument);
+          if (command.command === "netflix") {
+            netflixGet(`/next/${command.argument}`);
+          }
+        }}
       >
         <CardIcon src={`/icons/controls/${command.image}`} />
         <CardTitle>{command.description}</CardTitle>

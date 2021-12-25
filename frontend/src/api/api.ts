@@ -4,7 +4,7 @@ import { DeviceCommand, TvDevice } from "./types";
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? `${window.location.origin}`
-    : "http://localhost:8000";
+    : "http://192.168.1.17:8000";
 
 const post = (endpoint: string, body: any) => {
   return fetch(`${baseUrl}${endpoint}`, {

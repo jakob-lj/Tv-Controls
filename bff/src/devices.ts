@@ -19,6 +19,7 @@ type TvMapping = {
 
 type DeviceProperties = {
   tvInput: string;
+  netflixInput: string;
 };
 
 const tvIdMappings: TvMapping[] = [
@@ -30,6 +31,7 @@ const tvIdMappings: TvMapping[] = [
     image: "/bjerkebakken.png",
     properties: {
       tvInput: "HDMI3",
+      netflixInput: "HDMI2",
     },
     controls: [
       {
@@ -96,6 +98,7 @@ const tvIdMappings: TvMapping[] = [
     requiredPrincipal: Role.USER,
     properties: {
       tvInput: "HDMI1",
+      netflixInput: "HDMI2",
     },
     controls: [
       {
@@ -139,6 +142,12 @@ const tvIdMappings: TvMapping[] = [
         description: "Se TV",
         image: "tv.png",
         argument: null,
+      },
+      {
+        command: "netflix",
+        description: "The Crown",
+        image: "the-crown.jpg",
+        argument: "80025678",
       },
       {
         command: "channelUp",

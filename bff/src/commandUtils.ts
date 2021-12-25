@@ -90,6 +90,12 @@ const buildCommand = ({
         capability: "mediaInputSource",
         arguments: [deviceProperties.tvInput],
       };
+    case "netflix":
+      return {
+        command: "setInputSource",
+        capability: "mediaInputSource",
+        arguments: [deviceProperties.netflixInput],
+      };
     case "channelUp":
       return {
         command: "channelUp",

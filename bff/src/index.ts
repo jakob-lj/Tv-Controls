@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "*",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
@@ -55,6 +55,7 @@ app.get("/api/device/:deviceId/controls", authenticated, (req, res) => {
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
   res.send(getDeviceControls(req.params.deviceId));
 });
+
 app.get("/api/testAuth/:deviceId", authenticated, (req, res) => {
   const role = (req as AuthenticatedRequest).userRole;
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();

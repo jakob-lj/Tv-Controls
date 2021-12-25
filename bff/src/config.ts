@@ -12,6 +12,7 @@ class AppConfig {
     this.JWTKEY = getValueOrDefault(env.SIGNINGKEY, "secret");
     this.USERPASSWORD = getValueOrDefault(env.USERPASSWORD, "user");
     this.ADMINPASSWORD = getValueOrDefault(env.ADMINPASSWORD, "admin");
+    console.log("Using singing key: ", this.JWTKEY);
   }
 }
 
