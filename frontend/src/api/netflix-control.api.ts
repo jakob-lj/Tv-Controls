@@ -1,4 +1,4 @@
-const netflixBaseUrl = process.env.NETFLIX_BFF ?? "http://192.168.1.17:8001";
+const netflixBaseUrl = process.env.NETFLIX_BFF ?? "http://localhost:8001";
 
 const netflixPost = (
   endpoint: string,
