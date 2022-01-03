@@ -6,12 +6,18 @@ class AppConfig {
   JWTKEY: string;
   USERPASSWORD: string;
   ADMINPASSWORD: string;
+  NETFLIX_BFF: string;
 
   constructor(env: NodeJS.ProcessEnv) {
     this.PTA = env.PTA!!;
     this.JWTKEY = getValueOrDefault(env.SIGNINGKEY, "secret");
     this.USERPASSWORD = getValueOrDefault(env.USERPASSWORD, "user");
     this.ADMINPASSWORD = getValueOrDefault(env.ADMINPASSWORD, "admin");
+    this.NETFLIX_BFF = getValueOrDefault(
+      env.NETFLIX_BFF,
+      "https://netflix.jakoblj.xyz"
+    );
+
     console.log("Using singing key: ", this.JWTKEY);
   }
 }

@@ -1,4 +1,7 @@
-const netflixBaseUrl = process.env.NETFLIX_BFF ?? "http://localhost:8001";
+const netflixBaseUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8001"
+    : "https://netflix.jakoblj.xyz";
 
 const netflixPost = (
   endpoint: string,
