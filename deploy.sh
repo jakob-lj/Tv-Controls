@@ -3,4 +3,4 @@
 ./buildFrontend.sh
 cd bff
 ./build.sh
-gcloud app deploy 
+gcloud app deploy --project tv-control-323115 
