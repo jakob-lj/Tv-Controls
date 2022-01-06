@@ -40,6 +40,15 @@ const Control: React.FC = () => {
           sendCommand(deviceId, command.command, command.argument);
           if (command.command === "netflix") {
             netflixGet(`/next/${command.argument}`);
+          } else if (command.command === "tv") {
+            netflixPost(
+              `/url`,
+              {
+                url: "https://berit-tv.jakoblj.xyz/mac",
+                userid: "a116a760-f8fc-475e-8c8e-0534d85252b5",
+              },
+              "a116a760-f8fc-475e-8c8e-0534d85252b5"
+            );
           }
         }}
       >

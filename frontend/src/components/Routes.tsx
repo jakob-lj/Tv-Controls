@@ -4,6 +4,7 @@ import AutomaticSetup from "../pages/AutomaticSetup";
 import Control from "../pages/Control";
 import Home from "../pages/Home";
 import Logout from "../pages/Logout";
+import MacHomePage from "../pages/MacHomepage";
 import Setup from "../pages/Setup";
 
 const Routes = () => {
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route path={"/automatic/setup"} component={AutomaticSetup} />
       <Route path={"/setup"} component={Setup} />
       <Route path={"/logout"} component={Logout} />
+      <Route path={"/mac"} component={MacHomePage} />
       <Route exact path={"/"} component={Home} />
     </Router>
   );
