@@ -4,7 +4,14 @@ import styled from "styled-components";
 import { getDeviceControls, sendCommand } from "../api/api";
 import { netflixGet, netflixPost } from "../api/netflix-control.api";
 import { DeviceCommand } from "../api/types";
-import { CardIcon, CardTitle, CardWrapper, Wrapper } from "../components/Crad";
+import {
+  CardIcon,
+  CardIconWrapper,
+  CardIconWrapperWrapper,
+  CardTitle,
+  CardWrapper,
+  Wrapper,
+} from "../components/Crad";
 import Header from "../components/Header";
 import { getDefaultDevice } from "../utils/utils";
 
@@ -49,10 +56,23 @@ const Control: React.FC = () => {
               },
               "a116a760-f8fc-475e-8c8e-0534d85252b5"
             );
+          } else if (command.command === "jakeTvBoxUrl") {
+            netflixPost(
+              `/url`,
+              {
+                url: command.argument,
+                userid: "a116a760-f8fc-475e-8c8e-0534d85252b5",
+              },
+              "a116a760-f8fc-475e-8c8e-0534d85252b5"
+            );
           }
         }}
       >
-        <CardIcon src={`/icons/controls/${command.image}`} />
+        <CardIconWrapperWrapper>
+          <CardIconWrapper>
+            <CardIcon src={`/icons/controls/${command.image}`} />
+          </CardIconWrapper>
+        </CardIconWrapperWrapper>
         <CardTitle>{command.description}</CardTitle>
       </CardWrapper>
     );

@@ -32,10 +32,25 @@ const CardWrapper = styled.div`
 `;
 
 const CardIcon = styled.img`
+  max-height: 100%;
+  max-width: 100%;
+  min-width: 120px;
+  min-height: 120px;
+`;
+
+const CardIconWrapperWrapper = styled.div`
   margin: auto;
-  width: 80px;
-  height: 80px;
+  width: 160px;
+  height: 160px;
   margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+`;
+
+const CardIconWrapper = styled.div`
+  height: max-content;
+  width: max-content;
+  margin: auto;
 `;
 
 const CardTitle = styled.h3`
@@ -44,4 +59,11 @@ const CardTitle = styled.h3`
   margin-top: 1em;
 `;
 
-export { Wrapper, CardWrapper, CardIcon, CardTitle };
+export {
+  Wrapper,
+  CardWrapper,
+  CardIconWrapper,
+  CardIconWrapperWrapper,
+  CardIcon,
+  CardTitle,
+};

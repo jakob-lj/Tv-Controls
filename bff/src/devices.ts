@@ -22,6 +22,9 @@ type DeviceProperties = {
   netflixInput: string;
 };
 
+const teliaBaseUrl = "https://teliaplay.no/se/direkte";
+const telia = (endUrl: string) => `${teliaBaseUrl}/${endUrl}`;
+
 const tvIdMappings: TvMapping[] = [
   {
     logicalId: "VCJIUmnw",
@@ -138,40 +141,100 @@ const tvIdMappings: TvMapping[] = [
         argument: 40,
       },
       {
-        command: "tv",
-        description: "Se TV",
-        image: "tv.png",
-        argument: null,
-      },
-      {
         command: "netflix",
         description: "The Crown",
         image: "the-crown.jpg",
         argument: "80025678",
       },
       {
-        command: "channelUp",
-        description: "Kanal opp",
-        image: "channel-up.png",
-        argument: null,
-      },
-      {
-        command: "channelDown",
-        description: "Kanal ned",
-        image: "channel-down.png",
-        argument: null,
-      },
-      {
-        command: "setChannel",
+        command: "jakeTvBoxUrl",
         description: "Nrk 1",
         image: "nrk1.jpg",
-        argument: "1",
+        argument: telia("nrk1-oslo-og-viken"),
       },
       {
-        command: "setChannel",
+        command: "jakeTvBoxUrl",
+        description: "Nrk 2",
+        image: "nrk2.png",
+        argument: telia("nrk2"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "Nrk 3",
+        image: "nrk3.png",
+        argument: telia("nrk3"),
+      },
+      {
+        command: "jakeTvBoxUrl",
         description: "TV 2",
         image: "tv2.png",
-        argument: "4",
+        argument: telia("tv-2"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 2 Zebra",
+        image: "tv2z.png",
+        argument: telia("tv-2-zebra"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV Norge",
+        image: "tvnorge.png",
+        argument: telia("tvnorge"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "Max",
+        image: "max.png",
+        argument: telia("max"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 3",
+        image: "tv3.png",
+        argument: telia("tv3"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "Viasat 4",
+        image: "v4.svg",
+        argument: telia("v4"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 2 Nyhetskanalen",
+        image: "tv2n.png",
+        argument: telia("tv-2-nyhetskanalen"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "Fem",
+        image: "fem.png",
+        argument: telia("fem"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 2 Livsstil",
+        image: "tv2l.png",
+        argument: telia("tv-2-livsstil"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 2 Sport 1",
+        image: "tv2s1.png",
+        argument: telia("tv-2-sport-1"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 2 Sport 2",
+        image: "tv2s2.png",
+        argument: telia("tv-2-sport-2"),
+      },
+      {
+        command: "jakeTvBoxUrl",
+        description: "TV 6",
+        image: "tv6.png",
+        argument: telia("tv6"),
       },
     ],
   },
