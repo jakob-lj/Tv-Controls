@@ -47,7 +47,7 @@ const Control: React.FC = () => {
           sendCommand(deviceId, command.command, command.argument);
           if (command.command === "netflix") {
             netflixGet(`/next/${command.argument}`);
-          } else if (command.command === "tv") {
+          } else if (command.command === "tv" || command.command === "off") {
             netflixPost(
               `/url`,
               {

@@ -102,6 +102,12 @@ const buildCommand = ({
         capability: "mediaInputSource",
         arguments: [deviceProperties.netflixInput],
       };
+    case "beritHomeScreen":
+      return {
+        command: "setInputSource",
+        capability: "mediaInputSource",
+        arguments: [deviceProperties.netflixInput],
+      };
     case "channelUp":
       return {
         command: "channelUp",

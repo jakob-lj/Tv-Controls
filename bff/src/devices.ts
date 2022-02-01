@@ -196,6 +196,12 @@ const tvIdMappings: TvMapping[] = [
       },
       {
         command: "jakeTvBoxUrl",
+        description: "Vox",
+        image: "vox.png",
+        argument: telia("vox"),
+      },
+      {
+        command: "jakeTvBoxUrl",
         description: "Viasat 4",
         image: "v4.svg",
         argument: telia("v4"),
