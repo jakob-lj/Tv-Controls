@@ -9,3 +9,7 @@ export type DeviceCommand = {
   description: string;
   argument: string;
 };
+
+export type JakeboxId = {
+  id: string;
+};

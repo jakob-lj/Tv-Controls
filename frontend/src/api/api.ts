@@ -1,5 +1,5 @@
 import { getAccessToken } from "../utils/utils";
-import { DeviceCommand, TvDevice } from "./types";
+import { DeviceCommand, JakeboxId, TvDevice } from "./types";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
@@ -58,6 +58,10 @@ const getDeviceControls = async (
   );
 };
 
+const getJakeboxId = async (): Promise<JakeboxId> => {
+  return await getAuthed(`/api/secret/jakebox-id`).then((r) => r.json());
+};
+
 const sendCommand = async (
   deviceId: string,
   command: string,
@@ -81,5 +85,6 @@ export {
   getDevices,
   getDeviceControls,
   sendCommand,
+  getJakeboxId,
   getCurrentDevice,
 };

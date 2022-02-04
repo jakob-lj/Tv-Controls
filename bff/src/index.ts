@@ -5,6 +5,7 @@ import {
   AuthenticatedRequest,
   generateJwt,
   requireAuthz,
+  requireBasicAuthz,
 } from "./auth";
 import { requireBodyElement } from "./utils";
 import config from "./config";
@@ -61,6 +62,14 @@ app.get("/api/testAuth/:deviceId", authenticated, (req, res) => {
   if (!requireAuthz(role, req.params.deviceId)) return res.status(401).send();
   res.send("ok");
 });
+
+app.get(
+  "/api/secret/jakebox-id",
+  authenticated,
+  (req: express.Request, res: express.Response) => {
+    res.send({ id: config.NETFLIX_BFF_SECRET_BERIT });
+  }
+);
 
 app.post("/api/login", (req, res) => {
   if (req.body.pass) {

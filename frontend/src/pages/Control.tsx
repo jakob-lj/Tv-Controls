@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getDeviceControls, sendCommand } from "../api/api";
+import { getDeviceControls, getJakeboxId, sendCommand } from "../api/api";
 import { netflixGet, netflixPost } from "../api/netflix-control.api";
-import { DeviceCommand } from "../api/types";
+import { DeviceCommand, JakeboxId } from "../api/types";
 import {
   CardIcon,
   CardIconWrapper,
@@ -33,11 +33,24 @@ const Control: React.FC = () => {
 
   const deviceId = params.deviceId;
   const [deviceCommands, setDeviceCommands] = useState<DeviceCommand[]>([]);
+  const [jakeboxId, setJakeboxId] = useState<JakeboxId | null>(null);
+
+  const _getJakeboxId = (): JakeboxId => {
+    if (jakeboxId === null) {
+      localStorage.clear();
+      window.location.href = "/setup";
+      throw "Id not found";
+    }
+    return jakeboxId;
+  };
+
+  console.log(jakeboxId);
 
   useEffect(() => {
     getDeviceControls(deviceId).then((r) =>
       setDeviceCommands(r as DeviceCommand[])
     );
+    getJakeboxId().then((r) => setJakeboxId(r as JakeboxId));
   }, []);
 
   const deviceCommanCards = deviceCommands.map((command) => {
@@ -52,18 +65,18 @@ const Control: React.FC = () => {
               `/url`,
               {
                 url: "https://berit-tv.jakoblj.xyz/mac",
-                userid: "a116a760-f8fc-475e-8c8e-0534d85252b5",
+                userid: _getJakeboxId().id,
               },
-              "a116a760-f8fc-475e-8c8e-0534d85252b5"
+              _getJakeboxId().id
             );
           } else if (command.command === "jakeTvBoxUrl") {
             netflixPost(
               `/url`,
               {
                 url: command.argument,
-                userid: "a116a760-f8fc-475e-8c8e-0534d85252b5",
+                userid: _getJakeboxId().id,
               },
-              "a116a760-f8fc-475e-8c8e-0534d85252b5"
+              _getJakeboxId().id
             );
           }
         }}

@@ -48,10 +48,15 @@ const requireAuthz = (principal: Role, deviceLogicalId: string) => {
   );
 };
 
+const requireBasicAuthz = (principal: Role) => {
+  return principal === Role.ADMIN || principal === Role.USER;
+};
+
 export {
   getPta,
   generateJwt,
   authenticated,
   AuthenticatedRequest,
   requireAuthz,
+  requireBasicAuthz,
 };
